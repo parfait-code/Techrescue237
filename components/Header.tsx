@@ -48,7 +48,7 @@ const Header = () => {
     {
       name: "Monitoring & Support",
       icon: Monitor,
-      href: "/services",
+      href: "/",
     },
   ];
 
@@ -62,7 +62,7 @@ const Header = () => {
 
   // Close mobile menu when clicking outside
   useEffect(() => {
-    const handleClickOutside = (event: ReactElement) => {
+    const handleClickOutside = (event) => {
       if (isMenuOpen && !event.target.closest("header")) {
         setIsMenuOpen(false);
       }
