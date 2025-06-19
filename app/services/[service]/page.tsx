@@ -2,7 +2,7 @@
 import React from "react";
 import { notFound } from "next/navigation";
 import ServiceDetailPage from "./ServiceDetailPage";
-import { getServiceById, getAllServices, Service } from "@/data/services";
+import { getServiceById, getAllServices } from "@/data/services";
 
 interface ServiceDetailProps {
   params: {

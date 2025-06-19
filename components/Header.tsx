@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ReactElement } from "react";
 import {
   Menu,
   X,
@@ -46,14 +46,9 @@ const Header = () => {
       href: "/services/application-development",
     },
     {
-      name: "Security & Compliance",
-      icon: Shield,
-      href: "/services/security-compliance",
-    },
-    {
       name: "Monitoring & Support",
       icon: Monitor,
-      href: "/services/monitoring-support",
+      href: "/services",
     },
   ];
 
@@ -67,7 +62,7 @@ const Header = () => {
 
   // Close mobile menu when clicking outside
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleClickOutside = (event: ReactElement) => {
       if (isMenuOpen && !event.target.closest("header")) {
         setIsMenuOpen(false);
       }
