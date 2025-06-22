@@ -43,7 +43,7 @@ const Footer = () => {
   const company = [
     { name: "About", href: "/about" },
     { name: "Contact", href: "/contact" },
-    { name: "Terms of Service", href: "/terms" },
+    { name: "Terms of Service", href: "/legal" },
     { name: "Privacy Policy", href: "/policy" },
   ];
 

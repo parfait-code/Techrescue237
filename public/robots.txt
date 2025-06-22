@@ -1,0 +1,26 @@
+# Robots.txt for TechRescue247
+# This file tells search engine crawlers which pages to index
+
+User-agent: *
+Allow: /
+
+# Disallow sensitive or unnecessary pages
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /private/
+
+# Allow important pages explicitly
+Allow: /services/
+Allow: /about
+Allow: /contact
+Allow: /privacy
+Allow: /legal
+Allow: /faq
+
+# Sitemap location
+Sitemap: https://techrescue247.com/sitemap.xml
+
+# Crawl delay (optional - helps prevent server overload)
+Crawl-delay: 1

@@ -19,6 +19,8 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -104,22 +106,47 @@ const Header = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              <div className="flex items-center space-x-3">
-                <motion.div
-                  className="w-9 h-9 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center shadow-lg"
-                  whileHover={{
-                    scale: 1.05,
-                    rotate: 360,
-                    boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.3)",
-                  }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <Network className="w-5 h-5 text-white" />
-                </motion.div>
-                <span className="text-xl font-bold text-slate-900">
-                  TechRescue247
-                </span>
-              </div>
+              <Link href="/" className=" w-52">
+                <AnimatePresence mode="wait">
+                  {!isScrolled ? (
+                    <motion.div
+                      key="logo"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.8 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <Image
+                        src="/logo.png"
+                        alt="TechRescue247 Logo"
+                        width={200}
+                        height={40}
+                        className="object-contain"
+                      />
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="icon"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.8 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <Image
+                        src="/icon.png"
+                        alt="TechRescue247 Icon"
+                        width={32}
+                        height={32}
+                        className="object-contain"
+                      />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </Link>
             </motion.div>
 
             {/* Desktop Navigation */}
@@ -129,14 +156,17 @@ const Header = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <motion.a
-                href="/"
-                className="px-4 py-2 text-slate-700 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition-all duration-200 font-medium"
+              <motion.div
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                Home
-              </motion.a>
+                <Link
+                  href="/"
+                  className="px-4 py-2 text-slate-700 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition-all duration-200 font-medium"
+                >
+                  Home
+                </Link>
+              </motion.div>
 
               {/* Services Dropdown */}
               <div className="relative services-dropdown">
@@ -167,11 +197,8 @@ const Header = () => {
                       transition={{ duration: 0.2, ease: "easeOut" }}
                     >
                       {services.map((service, index) => (
-                        <motion.a
+                        <motion.div
                           key={service.name}
-                          href={service.href}
-                          className="flex items-center px-4 py-3 text-slate-700 hover:bg-slate-50 hover:text-blue-600 transition-all duration-200 group"
-                          onClick={() => setIsServicesOpen(false)}
                           initial={{ opacity: 0, x: -10 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.2, delay: index * 0.05 }}
@@ -180,37 +207,51 @@ const Header = () => {
                             backgroundColor: "rgb(248 250 252)",
                           }}
                         >
-                          <motion.div
-                            className="w-8 h-8 bg-slate-100 group-hover:bg-blue-50 rounded-lg flex items-center justify-center mr-3 transition-colors duration-200"
-                            whileHover={{ scale: 1.1, rotate: 5 }}
+                          <Link
+                            href={service.href}
+                            className="flex items-center px-4 py-3 text-slate-700 hover:bg-slate-50 hover:text-blue-600 transition-all duration-200 group"
+                            onClick={() => setIsServicesOpen(false)}
                           >
-                            <service.icon className="w-4 h-4 text-slate-600 group-hover:text-blue-600 transition-colors duration-200" />
-                          </motion.div>
-                          <span className="text-sm font-medium">
-                            {service.name}
-                          </span>
-                        </motion.a>
+                            <motion.div
+                              className="w-8 h-8 bg-slate-100 group-hover:bg-blue-50 rounded-lg flex items-center justify-center mr-3 transition-colors duration-200"
+                              whileHover={{ scale: 1.1, rotate: 5 }}
+                            >
+                              <service.icon className="w-4 h-4 text-slate-600 group-hover:text-blue-600 transition-colors duration-200" />
+                            </motion.div>
+                            <span className="text-sm font-medium">
+                              {service.name}
+                            </span>
+                          </Link>
+                        </motion.div>
                       ))}
                     </motion.div>
                   )}
                 </AnimatePresence>
               </div>
-              <motion.a
-                href="/about"
-                className="px-4 py-2 text-slate-700 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition-all duration-200 font-medium"
+
+              <motion.div
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                About Us
-              </motion.a>
-              <motion.a
-                href="/contact"
-                className="px-4 py-2 text-slate-700 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition-all duration-200 font-medium"
+                <Link
+                  href="/about"
+                  className="px-4 py-2 text-slate-700 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition-all duration-200 font-medium"
+                >
+                  About Us
+                </Link>
+              </motion.div>
+
+              <motion.div
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                Contact Us
-              </motion.a>
+                <Link
+                  href="/contact"
+                  className="px-4 py-2 text-slate-700 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition-all duration-200 font-medium"
+                >
+                  Contact Us
+                </Link>
+              </motion.div>
             </motion.nav>
 
             {/* CTA Button */}
@@ -227,9 +268,11 @@ const Header = () => {
                 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Button className="bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl transition-all duration-200 font-medium px-6">
-                  Free Audit
-                </Button>
+                <Link href="/contact">
+                  <Button className="bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl transition-all duration-200 font-medium px-6">
+                    Free Audit
+                  </Button>
+                </Link>
               </motion.div>
             </motion.div>
 
@@ -290,18 +333,21 @@ const Header = () => {
               transition={{ duration: 0.3, ease: "easeOut" }}
             >
               <div className="px-4 py-6 space-y-1">
-                <motion.a
-                  href="#home"
-                  className="block px-4 py-3 text-slate-700 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition-all duration-200 font-medium"
-                  onClick={() => setIsMenuOpen(false)}
+                <motion.div
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3, delay: 0.1 }}
                   whileHover={{ x: 4 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  Home
-                </motion.a>
+                  <Link
+                    href="/"
+                    className="block px-4 py-3 text-slate-700 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition-all duration-200 font-medium"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Home
+                  </Link>
+                </motion.div>
 
                 {/* Mobile Services Section */}
                 <motion.div
@@ -314,54 +360,64 @@ const Header = () => {
                     Services
                   </div>
                   {services.map((service, index) => (
-                    <motion.a
+                    <motion.div
                       key={service.name}
-                      href={service.href}
-                      className="flex items-center px-4 py-3 text-slate-700 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition-all duration-200 group"
-                      onClick={() => setIsMenuOpen(false)}
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.3, delay: 0.2 + index * 0.05 }}
                       whileHover={{ x: 4 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      <motion.div
-                        className="w-8 h-8 bg-slate-100 group-hover:bg-blue-50 rounded-lg flex items-center justify-center mr-3 transition-colors duration-200"
-                        whileHover={{ scale: 1.1, rotate: 5 }}
+                      <Link
+                        href={service.href}
+                        className="flex items-center px-4 py-3 text-slate-700 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition-all duration-200 group"
+                        onClick={() => setIsMenuOpen(false)}
                       >
-                        <service.icon className="w-4 h-4 text-slate-600 group-hover:text-blue-600 transition-colors duration-200" />
-                      </motion.div>
-                      <span className="text-sm font-medium">
-                        {service.name}
-                      </span>
-                    </motion.a>
+                        <motion.div
+                          className="w-8 h-8 bg-slate-100 group-hover:bg-blue-50 rounded-lg flex items-center justify-center mr-3 transition-colors duration-200"
+                          whileHover={{ scale: 1.1, rotate: 5 }}
+                        >
+                          <service.icon className="w-4 h-4 text-slate-600 group-hover:text-blue-600 transition-colors duration-200" />
+                        </motion.div>
+                        <span className="text-sm font-medium">
+                          {service.name}
+                        </span>
+                      </Link>
+                    </motion.div>
                   ))}
                 </motion.div>
 
-                <motion.a
-                  href="/about"
-                  className="block px-4 py-3 text-slate-700 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition-all duration-200 font-medium"
-                  onClick={() => setIsMenuOpen(false)}
+                <motion.div
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3, delay: 0.55 }}
                   whileHover={{ x: 4 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  About
-                </motion.a>
-                <motion.a
-                  href="/contact"
-                  className="block px-4 py-3 text-slate-700 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition-all duration-200 font-medium"
-                  onClick={() => setIsMenuOpen(false)}
+                  <Link
+                    href="/about"
+                    className="block px-4 py-3 text-slate-700 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition-all duration-200 font-medium"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    About
+                  </Link>
+                </motion.div>
+
+                <motion.div
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3, delay: 0.6 }}
                   whileHover={{ x: 4 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  Contact
-                </motion.a>
+                  <Link
+                    href="/contact"
+                    className="block px-4 py-3 text-slate-700 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition-all duration-200 font-medium"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Contact
+                  </Link>
+                </motion.div>
 
                 {/* Mobile CTA */}
                 <motion.div
@@ -374,12 +430,14 @@ const Header = () => {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    <Button
-                      className="w-full bg-blue-600 hover:bg-blue-700 text-white shadow-lg font-medium"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      Free Audit
-                    </Button>
+                    <Link href="/contact">
+                      <Button
+                        className="w-full bg-blue-600 hover:bg-blue-700 text-white shadow-lg font-medium"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        Free Audit
+                      </Button>
+                    </Link>
                   </motion.div>
                 </motion.div>
               </div>

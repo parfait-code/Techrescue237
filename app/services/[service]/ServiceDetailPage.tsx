@@ -101,7 +101,7 @@ const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
   };
 
   return (
-    <div className="min-h-screen ">
+    <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="bg-slate-50 text-slate-900 py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -124,7 +124,7 @@ const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
                   <IconComponent className={`w-8 h-8 ${service.iconColor}`} />
                 </div>
                 <div>
-                  <h1 className="text-4xl lg:text-5xl font-bold">
+                  <h1 className="text-4xl lg:text-5xl font-bold text-slate-900">
                     {service.title}
                   </h1>
                 </div>
@@ -194,19 +194,39 @@ const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
       </section>
 
       {/* Main Content */}
-      <section className="py-20">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <Tabs defaultValue="benefits" className="w-full">
-            <TabsList className="grid w-full grid-cols-4">
-              <TabsTrigger value="benefits">Benefits</TabsTrigger>
-              <TabsTrigger value="process">Process</TabsTrigger>
-              <TabsTrigger value="pricing">Pricing</TabsTrigger>
-              <TabsTrigger value="faq">FAQ</TabsTrigger>
+            <TabsList className="grid w-full grid-cols-4 bg-white border border-gray-200">
+              <TabsTrigger
+                value="benefits"
+                className="text-slate-700 data-[state=active]:bg-blue-600 data-[state=active]:text-white"
+              >
+                Benefits
+              </TabsTrigger>
+              <TabsTrigger
+                value="process"
+                className="text-slate-700 data-[state=active]:bg-blue-600 data-[state=active]:text-white"
+              >
+                Process
+              </TabsTrigger>
+              <TabsTrigger
+                value="pricing"
+                className="text-slate-700 data-[state=active]:bg-blue-600 data-[state=active]:text-white"
+              >
+                Pricing
+              </TabsTrigger>
+              <TabsTrigger
+                value="faq"
+                className="text-slate-700 data-[state=active]:bg-blue-600 data-[state=active]:text-white"
+              >
+                FAQ
+              </TabsTrigger>
             </TabsList>
 
             <TabsContent value="benefits" className="mt-8">
               <div className="grid lg:grid-cols-2 gap-8">
-                <div>
+                <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
                   <h3 className="text-2xl font-bold text-slate-900 mb-6">
                     Benefits for Your Business
                   </h3>
@@ -220,13 +240,17 @@ const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
                   </div>
                 </div>
 
-                <div>
+                <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
                   <h3 className="text-2xl font-bold text-slate-900 mb-6">
                     Technologies Used
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {service.technologies.map((tech, index) => (
-                      <Badge key={index} variant="outline" className="text-sm">
+                      <Badge
+                        key={index}
+                        variant="outline"
+                        className="text-sm bg-slate-100 text-slate-700 border-slate-300"
+                      >
                         {tech}
                       </Badge>
                     ))}
@@ -236,90 +260,108 @@ const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
             </TabsContent>
 
             <TabsContent value="process" className="mt-8">
-              <h3 className="text-2xl font-bold text-slate-900 mb-8 text-center">
-                Our 4-Step Process
-              </h3>
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {service.process.map((step, index) => (
-                  <Card key={index} className="border border-slate-200">
-                    <CardHeader className="pb-4">
-                      <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold mb-2">
-                        {index + 1}
-                      </div>
-                      <CardTitle className="text-lg">{step.title}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-slate-600">{step.description}</p>
-                    </CardContent>
-                  </Card>
-                ))}
+              <div className="bg-white p-8 rounded-lg shadow-sm border border-gray-200">
+                <h3 className="text-2xl font-bold text-slate-900 mb-8 text-center">
+                  Our 4-Step Process
+                </h3>
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  {service.process.map((step, index) => (
+                    <Card
+                      key={index}
+                      className="border border-slate-200 bg-white"
+                    >
+                      <CardHeader className="pb-4">
+                        <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold mb-2">
+                          {index + 1}
+                        </div>
+                        <CardTitle className="text-lg text-slate-900">
+                          {step.title}
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-slate-600">{step.description}</p>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
               </div>
             </TabsContent>
 
             <TabsContent value="pricing" className="mt-8">
-              <h3 className="text-2xl font-bold text-slate-900 mb-8 text-center">
-                Pricing Tailored to Your Needs
-              </h3>
-              <div className="grid lg:grid-cols-3 gap-8">
-                {Object.entries(service.pricing).map(([key, plan]) => (
-                  <Card
-                    key={key}
-                    className={`border ${
-                      key === "professional"
-                        ? "border-blue-500 shadow-lg scale-105"
-                        : "border-slate-200"
-                    }`}
-                  >
-                    <CardHeader className="text-center pb-4">
-                      {key === "professional" && (
-                        <Badge className="w-fit mx-auto mb-2 bg-blue-600">
-                          Most Popular
-                        </Badge>
-                      )}
-                      <CardTitle className="text-xl">{plan.name}</CardTitle>
-                      <div className="text-3xl font-bold text-slate-900">
-                        {plan.price}
-                      </div>
-                      <CardDescription>{plan.description}</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-3 mb-6">
-                        {plan.features.map((feature, featureIndex) => (
-                          <div
-                            key={featureIndex}
-                            className="flex items-center space-x-3"
-                          >
-                            <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0" />
-                            <span className="text-sm text-slate-700">
-                              {feature}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                      <Button
-                        className={`w-full ${
-                          key === "professional"
-                            ? "bg-blue-600 hover:bg-blue-700"
-                            : ""
-                        }`}
-                        variant={key === "professional" ? "default" : "outline"}
-                      >
-                        Choose This Plan
-                      </Button>
-                    </CardContent>
-                  </Card>
-                ))}
+              <div className="bg-white p-8 rounded-lg shadow-sm border border-gray-200">
+                <h3 className="text-2xl font-bold text-slate-900 mb-8 text-center">
+                  Pricing Tailored to Your Needs
+                </h3>
+                <div className="grid lg:grid-cols-3 gap-8">
+                  {Object.entries(service.pricing).map(([key, plan]) => (
+                    <Card
+                      key={key}
+                      className={`border bg-white ${
+                        key === "professional"
+                          ? "border-blue-500 shadow-lg scale-105"
+                          : "border-slate-200"
+                      }`}
+                    >
+                      <CardHeader className="text-center pb-4">
+                        {key === "professional" && (
+                          <Badge className="w-fit mx-auto mb-2 bg-blue-600 text-white">
+                            Most Popular
+                          </Badge>
+                        )}
+                        <CardTitle className="text-xl text-slate-900">
+                          {plan.name}
+                        </CardTitle>
+                        <div className="text-3xl font-bold text-slate-900">
+                          {plan.price}
+                        </div>
+                        <CardDescription className="text-slate-600">
+                          {plan.description}
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="space-y-3 mb-6">
+                          {plan.features.map((feature, featureIndex) => (
+                            <div
+                              key={featureIndex}
+                              className="flex items-center space-x-3"
+                            >
+                              <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0" />
+                              <span className="text-sm text-slate-700">
+                                {feature}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                        <Button
+                          className={`w-full ${
+                            key === "professional"
+                              ? "bg-blue-600 hover:bg-blue-700 text-white"
+                              : "bg-white text-slate-700 border border-slate-300 hover:bg-slate-50"
+                          }`}
+                          variant={
+                            key === "professional" ? "default" : "outline"
+                          }
+                        >
+                          Choose This Plan
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
               </div>
             </TabsContent>
 
             <TabsContent value="faq" className="mt-8">
-              <div className="max-w-3xl mx-auto">
+              <div className="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-sm border border-gray-200">
                 <h3 className="text-2xl font-bold text-slate-900 mb-8 text-center">
                   Frequently Asked Questions
                 </h3>
                 <div className="space-y-4">
                   {service.faq.map((faq, index) => (
-                    <Card key={index} className="border border-slate-200">
+                    <Card
+                      key={index}
+                      className="border border-slate-200 bg-white"
+                    >
                       <CardHeader
                         className="cursor-pointer hover:bg-slate-50 transition-colors"
                         onClick={() => toggleFaq(index)}
@@ -336,7 +378,7 @@ const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
                         </div>
                       </CardHeader>
                       {openFaqIndex === index && (
-                        <CardContent className="pt-0">
+                        <CardContent className="pt-0 bg-white">
                           <p className="text-slate-600">{faq.answer}</p>
                         </CardContent>
                       )}
@@ -357,7 +399,7 @@ const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
           </h3>
           <div className="grid md:grid-cols-2 gap-8">
             {service.testimonials.map((testimonial, index) => (
-              <Card key={index} className="border border-slate-200">
+              <Card key={index} className="border border-slate-200 bg-white">
                 <CardContent className="pt-6">
                   <div className="flex items-center space-x-1 mb-4">
                     {[...Array(testimonial.rating)].map((_, i) => (
@@ -391,9 +433,9 @@ const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
       </section>
 
       {/* CTA Section */}
-      <section className="container mx-auto px-20">
+      <section className="container mx-auto px-20 bg-white">
         <CTA
-          title="Ready to Get Started with {service.title}?"
+          title={`Ready to Get Started with ${service.title}?`}
           description="Contact us for a free audit and personalized proposal."
         />
       </section>

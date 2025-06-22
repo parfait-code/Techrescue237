@@ -322,15 +322,6 @@ const ProcessSection = () => {
                             {step.duration}
                           </div>
                         </div>
-
-                        {/* Arrow indicator */}
-                        <div
-                          className={`w-8 h-8 ${colorClasses.bg} rounded-full flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity`}
-                        >
-                          <ArrowRight
-                            className={`w-4 h-4 ${colorClasses.text}`}
-                          />
-                        </div>
                       </div>
 
                       <p className="text-slate-600 mb-6 text-base lg:text-lg leading-relaxed">

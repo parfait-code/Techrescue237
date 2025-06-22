@@ -2,7 +2,6 @@
 import React, { useRef } from "react";
 import { Star, Quote } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import Image from "next/image";
 import CTA from "./CTA";
