@@ -313,7 +313,7 @@ export default function LegalPage() {
         </div>
 
         {/* Company Information */}
-        <div className="mt-12 bg-slate-100 rounded-lg p-8 border border-slate-200">
+        {/* <div className="mt-12 bg-slate-100 rounded-lg p-8 border border-slate-200">
           <h2 className="text-2xl font-semibold text-slate-800 mb-6 text-center">
             Company Information
           </h2>
@@ -325,7 +325,7 @@ export default function LegalPage() {
             <p>Business Registration: [Registration Number]</p>
             <p>Tax ID: [Tax Identification Number]</p>
           </div>
-        </div>
+        </div> */}
 
         {/* Contact Section */}
         <div className="mt-8 bg-blue-50 rounded-lg p-8 border border-blue-200">
@@ -336,17 +336,19 @@ export default function LegalPage() {
             <div className="text-center">
               <Mail className="w-8 h-8 text-blue-600 mx-auto mb-3" />
               <p className="text-slate-700 font-medium">Legal Department</p>
-              <p className="text-slate-600">legal@techrescue247.com</p>
+              <p className="text-slate-600">contact@techrescue247.com</p>
             </div>
             <div className="text-center">
               <Phone className="w-8 h-8 text-blue-600 mx-auto mb-3" />
               <p className="text-slate-700 font-medium">Main Office</p>
-              <p className="text-slate-600">+1 (555) 247-TECH</p>
+              <p className="text-slate-600">+237 678 830 036 </p>
             </div>
             <div className="text-center">
               <MapPin className="w-8 h-8 text-blue-600 mx-auto mb-3" />
               <p className="text-slate-700 font-medium">Business Address</p>
-              <p className="text-slate-600">Available upon request</p>
+              <p className="text-slate-600">
+                Mimboman Terminus, Yaoundé-Cameroon
+              </p>
             </div>
           </div>
           <div className="text-center mt-6">
@@ -368,7 +370,7 @@ export default function LegalPage() {
             ← Back to Home
           </Link>
           <Link
-            href="/privacy"
+            href="/policy"
             className="text-blue-600 hover:text-blue-700 underline"
           >
             Privacy Policy →

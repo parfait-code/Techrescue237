@@ -343,8 +343,8 @@ const ContactPage = () => {
                           className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 hover:border-slate-400 focus:scale-105"
                           placeholder={
                             field === "name"
-                              ? "John Doe"
-                              : "johndoe@company.com"
+                              ? "Your Name"
+                              : "youremail@company.com"
                           }
                         />
                       </div>
@@ -546,7 +546,7 @@ const ContactPage = () => {
             </h3>
 
             <p className="text-slate-600 text-lg mb-6 max-w-2xl mx-auto">
-              Join over 300 companies who trust us with their IT infrastructure.
+              Join over 100 companies who trust us with their IT infrastructure.
               Free audit with no commitment.
             </p>
 
