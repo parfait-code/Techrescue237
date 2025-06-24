@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import {
   Code,
   Mail,
@@ -13,6 +14,48 @@ import {
 import Link from "next/link";
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [message, setMessage] = useState("");
+
+  // Remplacez YOUR_FORMSPARK_ID par votre ID FormSpark pour la newsletter
+  const FORMSPARK_NEWSLETTER_ID = "form_v1_QUWzXEgFhjjQkZSr3Q6GSG4g";
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setMessage("");
+
+    try {
+      const response = await fetch(
+        `https://submit-form.com/${FORMSPARK_NEWSLETTER_ID}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            email: email,
+            formType: "newsletter",
+            source: "footer",
+          }),
+        }
+      );
+
+      if (response.ok) {
+        setMessage("Merci pour votre inscription à notre newsletter !");
+        setEmail("");
+      } else {
+        setMessage("Une erreur s'est produite. Veuillez réessayer.");
+      }
+    } catch (error) {
+      setMessage("Une erreur s'est produite. Veuillez réessayer.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const services = [
     {
       name: "Local Networks & Security",
@@ -27,17 +70,6 @@ const Footer = () => {
       name: "Application Development",
       href: "/services/application-development",
     },
-    // { name: "Security & Compliance", href: "#" },
-    // { name: "Monitoring & Support", href: "#" },
-  ];
-
-  const resources = [
-    "Blog",
-    "Case Studies",
-    "Documentation",
-    "API Reference",
-    "Guides",
-    "FAQ",
   ];
 
   const company = [
@@ -63,16 +95,39 @@ const Footer = () => {
               </p>
             </div>
             <div className="mt-6 lg:mt-0 lg:flex-shrink-0">
-              <div className="flex max-w-md">
+              <form onSubmit={handleNewsletterSubmit} className="flex max-w-md">
                 <input
                   type="email"
                   placeholder="Your email address"
-                  className="flex-1 px-4 py-3 bg-gray-800 border border-gray-700 rounded-l-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  disabled={isSubmitting}
+                  className="flex-1 px-4 py-3 bg-gray-800 border border-gray-700 rounded-l-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 disabled:opacity-50"
                 />
-                <button className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-r-lg font-semibold transition-colors">
-                  <ArrowRight className="w-5 h-5" />
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-r-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? (
+                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  ) : (
+                    <ArrowRight className="w-5 h-5" />
+                  )}
                 </button>
-              </div>
+              </form>
+              {message && (
+                <p
+                  className={`mt-2 text-sm ${
+                    message.includes("Merci")
+                      ? "text-green-400"
+                      : "text-red-400"
+                  }`}
+                >
+                  {message}
+                </p>
+              )}
             </div>
           </div>
         </div>
@@ -112,34 +167,6 @@ const Footer = () => {
                 </span>
               </div>
             </div>
-
-            {/* Social Links */}
-            {/* <div className="flex space-x-4">
-              <a
-                href="#"
-                className="w-10 h-10 bg-gray-800 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-colors"
-              >
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 bg-gray-800 hover:bg-blue-400 rounded-lg flex items-center justify-center transition-colors"
-              >
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 bg-gray-800 hover:bg-blue-700 rounded-lg flex items-center justify-center transition-colors"
-              >
-                <Linkedin className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 bg-gray-800 hover:bg-pink-600 rounded-lg flex items-center justify-center transition-colors"
-              >
-                <Instagram className="w-5 h-5" />
-              </a>
-            </div> */}
           </div>
 
           {/* Services */}
@@ -158,23 +185,6 @@ const Footer = () => {
               ))}
             </ul>
           </div>
-
-          {/* Resources */}
-          {/* <div>
-            <h4 className="text-lg font-semibold mb-6">Resources</h4>
-            <ul className="space-y-3">
-              {resources.map((resource, index) => (
-                <li key={index}>
-                  <Link
-                    href="#"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    {resource}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div> */}
 
           {/* Company */}
           <div>
