@@ -192,7 +192,7 @@ export default function PrivacyPage() {
               </div>
             </section>
 
-            <section className="mb-8">
+            {/* <section className="mb-8">
               <h2 className="text-2xl font-semibold text-slate-800 mb-4">
                 Cookies and Tracking
               </h2>
@@ -204,7 +204,7 @@ export default function PrivacyPage() {
                   browser settings.
                 </p>
               </div>
-            </section>
+            </section> */}
 
             <section className="mb-8">
               <h2 className="text-2xl font-semibold text-slate-800 mb-4">
@@ -230,17 +230,19 @@ export default function PrivacyPage() {
             <div className="text-center">
               <Mail className="w-8 h-8 text-blue-600 mx-auto mb-3" />
               <p className="text-slate-700 font-medium">Email Us</p>
-              <p className="text-slate-600">privacy@techrescue247.com</p>
+              <p className="text-slate-600">contact@techrescue247.com</p>
             </div>
             <div className="text-center">
               <Phone className="w-8 h-8 text-blue-600 mx-auto mb-3" />
               <p className="text-slate-700 font-medium">Call Us</p>
-              <p className="text-slate-600">+1 (555) 247-TECH</p>
+              <p className="text-slate-600">+237 678 830 036</p>
             </div>
             <div className="text-center">
               <MapPin className="w-8 h-8 text-blue-600 mx-auto mb-3" />
               <p className="text-slate-700 font-medium">Visit Us</p>
-              <p className="text-slate-600">Contact us for address</p>
+              <p className="text-slate-600">
+                Mimboman Terminus, Yaoundé-Cameroon
+              </p>
             </div>
           </div>
           <div className="text-center mt-6">

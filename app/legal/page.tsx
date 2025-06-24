@@ -341,7 +341,7 @@ export default function LegalPage() {
             <div className="text-center">
               <Phone className="w-8 h-8 text-blue-600 mx-auto mb-3" />
               <p className="text-slate-700 font-medium">Main Office</p>
-              <p className="text-slate-600">+237 678 830 036 </p>
+              <p className="text-slate-600">+237 678 830 036</p>
             </div>
             <div className="text-center">
               <MapPin className="w-8 h-8 text-blue-600 mx-auto mb-3" />

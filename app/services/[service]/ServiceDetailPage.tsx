@@ -210,12 +210,13 @@ const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
               >
                 Process
               </TabsTrigger>
-              <TabsTrigger
+
+              {/* <TabsTrigger
                 value="pricing"
                 className="text-slate-700 data-[state=active]:bg-blue-600 data-[state=active]:text-white"
               >
                 Pricing
-              </TabsTrigger>
+              </TabsTrigger> */}
               <TabsTrigger
                 value="faq"
                 className="text-slate-700 data-[state=active]:bg-blue-600 data-[state=active]:text-white"
@@ -287,7 +288,7 @@ const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
               </div>
             </TabsContent>
 
-            <TabsContent value="pricing" className="mt-8">
+            {/* <TabsContent value="pricing" className="mt-8">
               <div className="bg-white p-8 rounded-lg shadow-sm border border-gray-200">
                 <h3 className="text-2xl font-bold text-slate-900 mb-8 text-center">
                   Pricing Tailored to Your Needs
@@ -349,7 +350,7 @@ const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
                   ))}
                 </div>
               </div>
-            </TabsContent>
+            </TabsContent> */}
 
             <TabsContent value="faq" className="mt-8">
               <div className="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-sm border border-gray-200">
