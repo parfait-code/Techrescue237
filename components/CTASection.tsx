@@ -266,7 +266,7 @@ const CTASection = () => {
       icon: Phone,
       title: "Phone consultation",
       description: "Let's discuss your needs directly",
-      contact: "+1 (555) 123-4567",
+      contact: "+237 678 830 036",
       availability: "Mon-Fri: 9am-6pm",
       action: "Call us",
     },
@@ -612,7 +612,7 @@ const CTASection = () => {
                   animate={isTrustInView ? "visible" : "hidden"}
                   whileHover="hover"
                 >
-                  150+
+                  100+
                 </motion.div>
                 <motion.div
                   className="text-slate-400 text-sm"
